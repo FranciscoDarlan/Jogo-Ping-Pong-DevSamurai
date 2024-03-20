@@ -1,24 +1,69 @@
 const canvasE1 = document.querySelector("canvas"),
     canvasCtx = canvasE1.getContext("2d");
+
 const lineWidth = 15;
 
 function setup() {
-    canvasE1.width = canvasCtx.width = window.innerWidth;
-    canvasE1.height = canvasCtx.heigth = window.innerHeight;
+    canvasE1.width = canvasCtx.width = field_campo.w;
+    canvasE1.height = canvasCtx.heigth = field_campo.h;
+}
+
+// orientando a objeto ..
+
+const field_campo = {
+    w: window.innerWidth,
+    h: window.innerHeight,
+    draw: function () {
+        //Campo da cor verde>>>>
+        canvasCtx.fillStyle = "#286047";
+        canvasCtx.fillRect(0, 0, this.w, this.h);
+    }
+}
+
+const line_linha = {
+    w: 15,
+    h: field_campo.h,
+    draw: function () {
+        //Linha central>>>>
+        canvasCtx.fillStyle = "#ffffff";
+
+        const x = this.h / 2 - this.w / 2;
+        const y = 0;
+        const w = this.w;
+        const h = this.h;
+
+        canvasCtx.fillRect(x, y, w, h);
+    }
 }
 
 function draw() {
-    canvasCtx.fillStyle = "#286047";
-    canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
-    canvasCtx.fillStyle = "#ffffff";
-    
-    const x = window.innerWidth / 2 - lineWidth / 2;
-    const y = 0;
-    const w = lineWidth;
-    const h = window.innerHeight;
+    field_campo.draw();
+    line_linha.draw();
 
-    canvasCtx.fillRect(x, y, w, h);
+    // raquete lado esquerdo>>>>
+    canvasCtx.fillRect(10, 100, lineWidth, 200);
+
+
+
+    // raquete lado direito>>>>
+    canvasCtx.fillRect(window.innerWidth - lineWidth - 15, 200, lineWidth, 200);
+
+
+    // Criando Bola >>>>
+    canvasCtx.beginPath();
+    canvasCtx.arc(500, 200, 20, 0, 2 * Math.PI, false);
+    canvasCtx.fill();
+
+    // criando placar >>>
+    canvasCtx.font = "bold 72px Arial";  // fonte que todo computador tem
+    canvasCtx.textAlign = "center";
+    canvasCtx.textBaseline = "top";
+    canvasCtx.fillStyle = "#01341D";  // cor
+
+    //Adicionando Numero Placar Lado esquerdo e Direito >>
+    canvasCtx.fillText('3', window.innerWidth / 4, 50);
+    canvasCtx.fillText('1', window.innerWidth / 4 + window.innerWidth / 2, 50);
 }
 
 setup();

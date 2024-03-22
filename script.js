@@ -41,10 +41,21 @@ const line_linha = {
 const leftPaddle_raqueteEsquerda = {
     x: gapX,
     y: 100,
-    w: lineWidth.w,
+    w: line_linha.w,
     h: 200,
     draw: function () {
         //raquete lado esquerdo>>>>
+        canvasCtx.fillRect(this.x, this.y, this.w, this.h);
+    }
+}
+
+const rigthPaddle_raqueteDireita = {
+    x: window.innerWidth - lineWidth - 15,
+    y: 200,
+    w: line_linha.w,
+    h: 200,
+    draw: function () {
+        //raquete lado direita>>>>
         canvasCtx.fillRect(this.x, this.y, this.w, this.h);
     }
 }
@@ -54,12 +65,11 @@ function draw() {
     field_campo.draw();
     line_linha.draw();
     leftPaddle_raqueteEsquerda.draw();
+    rigthPaddle_raqueteDireita.draw();
 
     // raquete lado esquerdo>>>>
 
     // raquete lado direito>>>>
-    canvasCtx.fillRect(window.innerWidth - lineWidth - 15, 200, lineWidth, 200);
-
 
     // Criando Bola >>>>
     canvasCtx.beginPath();

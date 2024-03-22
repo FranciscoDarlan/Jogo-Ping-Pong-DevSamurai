@@ -3,6 +3,8 @@ const canvasE1 = document.querySelector("canvas"),
 
 const lineWidth = 15;
 
+const gapX = 10;
+
 function setup() {
     canvasE1.width = canvasCtx.width = field_campo.w;
     canvasE1.height = canvasCtx.heigth = field_campo.h;
@@ -36,15 +38,24 @@ const line_linha = {
     }
 }
 
+const leftPaddle_raqueteEsquerda = {
+    x: gapX,
+    y: 100,
+    w: lineWidth.w,
+    h: 200,
+    draw: function () {
+        //raquete lado esquerdo>>>>
+        canvasCtx.fillRect(this.x, this.y, this.w, this.h);
+    }
+}
+
 function draw() {
 
     field_campo.draw();
     line_linha.draw();
+    leftPaddle_raqueteEsquerda.draw();
 
     // raquete lado esquerdo>>>>
-    canvasCtx.fillRect(10, 100, lineWidth, 200);
-
-
 
     // raquete lado direito>>>>
     canvasCtx.fillRect(window.innerWidth - lineWidth - 15, 200, lineWidth, 200);
